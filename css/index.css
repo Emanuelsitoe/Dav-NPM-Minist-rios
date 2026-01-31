@@ -1,0 +1,31 @@
+html{
+    scroll-behavior: smooth;
+}
+
+/* Estilos para o sistema de Ver Mais */
+.hidden-card {
+    display: none; /* Esconde por padrão */
+}
+
+.module-card span {
+    font-size: 0.75rem;
+    font-weight: bold;
+    color: var(--secondary);
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.module-card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    font-family: 'Playfair Display', serif;
+}
+
+#loadMoreBtn {
+    transition: all 0.3s ease;
+}
+
+#loadMoreBtn.active {
+    background: var(--secondary);
+}

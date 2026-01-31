@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emissão de Certificado | Daví NPM Ministérios</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:wght@700&family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <style>
+        :root { --primary: #1a237e; --secondary: #c5a059; }
+        body { font-family: 'Montserrat', sans-serif; background: #f4f4f4; margin: 0; display: flex; align-items: center; justify-content: center; min-height: 100vh; }
+        
+        .form-container { background: white; padding: 3rem; border-radius: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); width: 90%; max-width: 500px; text-align: center; }
+        .form-container h2 { font-family: 'Playfair Display', serif; color: var(--primary); margin-bottom: 2rem; }
+        
+        input { width: 100%; padding: 15px; margin-bottom: 1.5rem; border: 1px solid #ddd; border-radius: 6px; font-size: 1rem; }
+        
+        .btn-gen { background: var(--primary); color: white; border: none; padding: 15px 30px; border-radius: 6px; cursor: pointer; width: 100%; font-weight: bold; font-size: 1rem; transition: 0.3s; }
+        .btn-gen:hover { background: var(--secondary); }
+
+        /* Estilo do Overlay de Preview */
+        #preview-overlay { display: none; position: fixed; top:0; left:0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 100; overflow-y: auto; padding: 2rem; }
+        .actions { margin-bottom: 2rem; text-align: center; }
+        .btn-action { padding: 12px 25px; border: none; border-radius: 5px; cursor: pointer; margin: 0 10px; font-weight: bold; }
+
+        /* Estilo do Certificado para Exportação */
+        #cert-area {
+            width: 297mm;
+            height: 210mm;
+            background: white;
+            margin: 0 auto;
+            position: relative;
+            box-sizing: border-box;
+            border: 20px solid var(--primary);
+            padding: 40px;
+        }
+        .cert-inner-border {
+            border: 2px solid var(--secondary);
+            height: 100%;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 40px;
+            box-sizing: border-box;
+        }
+        .cert-header { color: var(--primary); font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 0.5rem; }
+        .cert-title { font-size: 4rem; letter-spacing: 8px; color: var(--primary); margin: 2rem 0; font-weight: bold; }
+        .aluno-nome { font-family: 'Dancing Script', cursive; font-size: 4.5rem; color: #333; margin: 1.5rem 0; }
+        .cert-text { font-size: 1.2rem; text-align: center; color: #555; max-width: 80%; line-height: 1.6; }
+        .signature-area { margin-top: 4rem; border-top: 2px solid #333; width: 300px; text-align: center; padding-top: 10px; }
+        .signature-area p { margin: 0; font-weight: bold; color: var(--primary); }
+    </style>
+</head>
+<body>
+
+    <div class="form-container">
+        <h2>Emissor de Certificado</h2>
+        <input type="text" id="inNome" placeholder="Seu Nome Completo">
+        <input type="text" id="inData" placeholder="Período (ex: 01 a 10 Fev 2026)">
+        <button class="btn-gen" onclick="abrirPreview()">Gerar Certificado</button>
+        <p style="margin-top: 1rem;"><a href="index.html" style="color: #666; text-decoration: none; font-size: 0.8rem;">Voltar ao site</a></p>
+    </div>
+
+    <div id="preview-overlay">
+        <div class="actions">
+            <button class="btn-action" style="background: #555; color: white;" onclick="fecharPreview()"> <i class="fas fa-edit"></i> Editar Dados</button>
+            <button class="btn-action" style="background: var(--secondary); color: white;" onclick="downloadPDF()"> <i class="fas fa-file-download"></i> Baixar PDF</button>
+        </div>
+
+        <div id="cert-area">
+            <div class="cert-inner-border">
+                <div class="cert-header">Daví NPM Ministérios</div>
+                <div style="width: 80px; height: 2px; background: var(--secondary);"></div>
+                
+                <div class="cert-title">CERTIFICADO</div>
+                
+                <p class="cert-text">Certificamos solenemente para os devidos fins que</p>
+                <div class="aluno-nome" id="outNome">Nome do Aluno</div>
+                
+                <p class="cert-text">
+                    concluiu a mentoria <strong>BATALHA ESPIRITUAL PARA MILAGRES</strong>,
+                    ministrada no período de <span id="outData">__/__/____</span>, abrangendo os 22 módulos de treinamento e autoridade espiritual.
+                </p>
+
+                <div class="signature-area">
+                    <p>Apóstolo Davi</p>
+                    <small style="color: var(--secondary)">Mentor e Líder Espiritual</small>
+                </div>
+
+                <!--<i class="fas fa-shield-alt" style="position: absolute; bottom: 40px; right: 40px; font-size: 4rem; color: rgba(197, 160, 89, 0.2);"></i>-->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function abrirPreview() {
+            const n = document.getElementById('inNome').value;
+            const d = document.getElementById('inData').value;
+            if(!n || !d) return alert("Preencha todos os campos!");
+
+            document.getElementById('outNome').innerText = n;
+            document.getElementById('outData').innerText = d;
+            document.getElementById('preview-overlay').style.display = 'block';
+        }
+
+        function fecharPreview() {
+            document.getElementById('preview-overlay').style.display = 'none';
+        }
+
+        function downloadPDF() {
+            const element = document.getElementById('cert-area');
+            const nomeArquivo = `Certificado_${document.getElementById('outNome').innerText}.pdf`;
+            
+            const opt = {
+                margin: 0,
+                filename: nomeArquivo,
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2 },
+                jsPDF: { unit: 'mm', format: 'a4', orientation: 'landscape' }
+            };
+
+            html2pdf().set(opt).from(element).save();
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Batalha Espiritual para Milagres | Daví NPM Ministérios</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/index.css">
+    
+    <style>
+        :root {
+            --primary: #1a237e; /* Azul Real Profundo */
+            --secondary: #c5a059; /* Dourado Metalizado */
+            --accent: #f5f5f5;
+            --text-dark: #2c3e50;
+            --text-light: #ffffff;
+            --gradient: linear-gradient(135deg, #1a237e 0%, #0d47a1 100%);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Montserrat', sans-serif; color: var(--text-dark); line-height: 1.6; overflow-x: hidden; }
+
+        /* --- Header & Navigation --- */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 1rem 5%;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .logo { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--primary); font-weight: bold; }
+
+        .nav-links { display: flex; list-style: none; gap: 2rem; }
+        .nav-links a { text-decoration: none; color: var(--text-dark); font-weight: 600; transition: 0.3s; }
+        .nav-links a:hover { color: var(--secondary); }
+
+        .menu-toggle { display: none; font-size: 1.5rem; cursor: pointer; }
+
+        /* --- Hero Section --- */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('./img/desktop.png') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 0 5%;
+        }
+        @media (max-width: 768px) {
+            .hero {
+                background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('./img/mobile.png') center/cover;
+            }
+        }
+        .hero-content h1 { font-family: 'Playfair Display', serif; font-size: 3.5rem; margin-bottom: 1rem; }
+        .hero-content p { font-size: 1.2rem; max-width: 800px; margin: 0 auto 2rem; }
+
+        .cta-button {
+            background: var(--secondary);
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            text-transform: uppercase;
+            transition: transform 0.3s;
+            display: inline-block;
+        }
+        .cta-button:hover { transform: scale(1.05); box-shadow: 0 5px 15px rgba(197, 160, 89, 0.4); }
+
+        /* --- About Section --- */
+        .about { padding: 5rem 10%; background: var(--accent); }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+        .about-text h2 { color: var(--primary); margin-bottom: 1.5rem; font-size: 2.2rem; }
+        .check-list { list-style: none; margin-top: 1.5rem; }
+        .check-list li { margin-bottom: 10px; display: flex; align-items: center; gap: 10px; }
+        .check-list i { color: var(--secondary); }
+
+        /* --- Curriculum (Cards) --- */
+        .curriculum { padding: 5rem 5%; background: white; }
+        .section-title { text-align: center; margin-bottom: 3rem; }
+        .curriculum-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+        .module-card {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 12px;
+            border-bottom: 4px solid var(--secondary);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            transition: 0.3s;
+        }
+        .module-card:hover { transform: translateY(-10px); background: var(--primary); color: white; }
+        .module-card i { font-size: 2rem; color: var(--secondary); margin-bottom: 1rem; }
+
+        /* --- Registration Form --- */
+        .registration { padding: 5rem 10%; background: var(--gradient); color: white; }
+        form { 
+            max-width: 600px; 
+            margin: 0 auto; 
+            background: white; 
+            padding: 2.5rem; 
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        form input, form select, form textarea {
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: inherit;
+        }
+        form button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1rem;
+        }
+
+        /* --- Footer --- */
+        footer { background: #111; color: white; padding: 4rem 10% 2rem; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 3rem; }
+        .footer-links h4 { margin-bottom: 1.5rem; color: var(--secondary); }
+        .social-icons { display: flex; gap: 1.5rem; font-size: 1.5rem; margin-top: 1rem; }
+        .social-icons a { color: white; transition: 0.3s; }
+        .social-icons a:hover { color: var(--secondary); }
+        .contact-item { margin-bottom: 10px; display: block; color: white; text-decoration: none; }
+
+        /* --- Responsividade --- */
+        @media (max-width: 768px) {
+            .nav-links { display: none; flex-direction: column; position: absolute; top: 100%; left: 0; width: 100%; background: white; padding: 2rem; text-align: center; }
+            .nav-links.active { display: flex; }
+            .menu-toggle { display: block; }
+            .grid-2 { grid-template-columns: 1fr; }
+            .hero-content h1 { font-size: 2.2rem; }
+        }
+
+        /* --- Admin Button & Modal --- */
+        .admin {
+            position: fixed;
+            right: 22px;
+            bottom: 22px;
+            background: var(--primary);
+            color: var(--text-light);
+            padding: 16px 20px;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(26,35,126,0.25);
+            cursor: pointer;
+            font-weight: 700;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            z-index: 1100;
+        }
+        .admin i { font-size: 1.05rem; }
+
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.45);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1200;
+            padding: 20px;
+        }
+        .modal-overlay.active { display: flex; }
+
+        .modal {
+            width: 360px;
+            max-width: 100%;
+            background: #fff;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.2);
+            color: var(--text-dark);
+        }
+        .modal h3 { margin-bottom: 12px; color: var(--primary); }
+        .modal input {
+            width: 100%;
+            padding: 10px 12px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: inherit;
+        }
+        .modal .error {
+            color: #b00020;
+            font-size: 0.9rem;
+            min-height: 1.2rem;
+        }
+        .modal .actions { display:flex; gap:10px; justify-content:flex-end; margin-top:6px; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">Daví NPM Ministérios</div>
+        <nav>
+            <div class="menu-toggle" id="mobile-menu"><i class="fas fa-bars"></i></div>
+            <ul class="nav-links">
+                <li><a href="#inicio">Início</a></li>
+                <li><a href="#sobre">O Curso</a></li>
+                <li><a href="#curriculo">Currículo</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+                <li><a href="#inscricao" class="cta-button" style="padding: 10px 20px;">Inscreva-se</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero" id="inicio">
+        <div class="hero-content" data-aos="fade-up">
+            <h1>BATALHA ESPIRITUAL PARA MILAGRES</h1>
+            <p>"Toda batalha espiritual vencida abre caminho para o milagre. Aprenda a lutar no espírito e manifestar resultados no visível."</p>
+            <p class="data">01 a 10 de Fevereiro</p>
+            <a href="#inscricao" class="cta-button">Garanta sua Vaga Agora</a>
+        </div>
+    </section>
+
+    <section class="about" id="sobre">
+        <div class="grid-2">
+            <div class="about-img" data-aos="fade-right">
+                <img src="img/ap.jfif" alt="Guerreiro Espiritual" style="width:100%; border-radius: 20px; box-shadow: 20px 20px 0 var(--secondary);">
+            </div>
+            <div class="about-text" data-aos="fade-left">
+                <h2>O Despertar do Guerreiro</h2>
+                <p>Muitos milagres não se manifestam porque o crente não foi ensinado a guerrear corretamente. Nossa luta não é contra pessoas, mas contra principados e potestades.</p>
+                <ul class="check-list">
+                    <li><i class="fas fa-shield-alt"></i> Identificar guerras espirituais invisíveis</li>
+                    <li><i class="fas fa-chain-broken"></i> Quebrar cadeias e fortalezas</li>
+                    <li><i class="fas fa-cross"></i> Ativar sua autoridade em Cristo</li>
+                    <li><i class="fas fa-fire"></i> Usar corretamente as armas espirituais</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="curriculum" id="curriculo">
+        <div class="section-title">
+            <h2 data-aos="fade-up">Currículo do Guerreiro</h2>
+            <p>22 Módulos práticos para destravar o seu milagre</p>
+        </div>
+
+        <div class="curriculum-grid" id="curriculum-container">
+            <div class="module-card" data-aos="zoom-in">
+                <i class="fas fa-bolt"></i>
+                <span>Módulo 01</span>
+                <h3>O Rhema na Guerra</h3>
+                <p>Como usar a palavra revelada para vencer guerras imediatas.</p>
+            </div>
+            <div class="module-card" data-aos="zoom-in">
+                <i class="fas fa-moon"></i>
+                <span>Módulo 02</span>
+                <h3>Guerra nos Sonhos</h3>
+                <p>O segredo para vencer as batalhas enquanto você dorme.</p>
+            </div>
+            <div class="module-card" data-aos="zoom-in">
+                <i class="fas fa-tree"></i>
+                <span>Módulo 03</span>
+                <h3>Conheça suas Origens</h3>
+                <p>Identificando brechas hereditárias e raízes espirituais.</p>
+            </div>
+            <div class="module-card" data-aos="zoom-in">
+                <i class="fas fa-eye"></i>
+                <span>Módulo 04</span>
+                <h3>O Profético ao seu Favor</h3>
+                <p>Como alinhar sua boca ao que Deus diz para decretar vitória.</p>
+            </div>
+            <div class="module-card" data-aos="zoom-in">
+                <i class="fas fa-fire"></i>
+                <span>Módulo 05</span>
+                <h3>Poder do Jejum</h3>
+                <p>A abstinência que quebra jugos e acelera respostas.</p>
+            </div>
+            <div class="module-card" data-aos="zoom-in">
+                <i class="fas fa-pray"></i>
+                <span>Módulo 06</span>
+                <h3>Poder da Oração</h3>
+                <p>Tecnologias de oração que movem o trono de Deus.</p>
+            </div>
+
+            <div class="module-card hidden-card">
+                <i class="fas fa-book"></i>
+                <span>Módulo 07</span>
+                <h3>Meditar na Palavra</h3>
+                <p>Transformando logotipos em poder vivo no seu espírito.</p>
+            </div>
+            <div class="module-card hidden-card">
+                <i class="fas fa-microphone-alt"></i>
+                <span>Módulo 08</span>
+                <h3>A Voz que Guia</h3>
+                <p>Como discernir a voz de Deus no meio do barulho da guerra.</p>
+            </div>
+            <div class="module-card hidden-card">
+                <i class="fas fa-hands"></i>
+                <span>Módulo 09</span>
+                <h3>Mãos de Moisés</h3>
+                <p>O mistério da intercessão sustentada para vencer Amaleque.</p>
+            </div>
+            <div class="module-card hidden-card">
+                <i class="fas fa-tint"></i>
+                <span>Módulo 10</span>
+                <h3>Sangue de Jesus</h3>
+                <p>A aplicação legal do sangue que anula decretos malignos.</p>
+            </div>
+            <div class="module-card hidden-card">
+                <i class="fas fa-handshake"></i>
+                <span>Módulo 11</span>
+                <h3>Aliança com Deus</h3>
+                <p>A segurança legal de quem está em pacto com o Altíssimo.</p>
+            </div>
+            <div class="module-card hidden-card">
+                <i class="fas fa-exclamation-triangle"></i>
+                <span>Módulo 12</span>
+                <h3>Impacto do Pecado</h3>
+                <p>Lidando com orgulho, mentira e fornicação na guerra.</p>
+            </div>
+            <div class="module-card hidden-card">
+                <i class="fas fa-user-shield"></i>
+                <span>Módulo 13</span>
+                <h3>Ter um General</h3>
+                <p>A importância da cobertura espiritual e mentoria.</p>
+            </div>
+            <div class="module-card hidden-card">
+                <i class="fas fa-trophy"></i>
+                <span>Módulo 14</span>
+                <h3>Vitória Espiritual</h3>
+                <p>O que realmente significa vencer no mundo invisível.</p>
+            </div>
+            <div class="module-card hidden-card">
+                <i class="fas fa-clock"></i>
+                <span>Módulo 15</span>
+                <h3>Paciência e Constância</h3>
+                <p>Vencendo pelo cansaço do inimigo e perseverança.</p>
+            </div>
+            <div class="module-card hidden-card">
+                <i class="fas fa-shield-alt"></i>
+                <span>Módulo 16</span>
+                <h3>O Poder da Fé</h3>
+                <p>O escudo que apaga todos os dardos inflamados.</p>
+            </div>
+            <div class="module-card hidden-card">
+                <i class="fas fa-gavel"></i>
+                <span>Módulo 17</span>
+                <h3>Guerra sem Pena</h3>
+                <p>Executando o juízo escrito contra as trevas.</p>
+            </div>
+            <div class="module-card hidden-card">
+                <i class="fas fa-skull-crossbones"></i>
+                <span>Módulo 18</span>
+                <h3>Inimigos Físicos</h3>
+                <p>Como lidar com oposições que se manifestam no natural.</p>
+            </div>
+            <div class="module-card hidden-card">
+                <i class="fas fa-place-of-worship"></i>
+                <span>Módulo 19</span>
+                <h3>Altar de Guerra</h3>
+                <p>Estabelecendo um lugar de autoridade na sua casa.</p>
+            </div>
+            <div class="module-card hidden-card">
+                <i class="fas fa-fire-alt"></i>
+                <span>Módulo 20</span>
+                <h3>Altar do Sacrifício</h3>
+                <p>O preço que libera o poder sobrenatural.</p>
+            </div>
+            <div class="module-card hidden-card">
+                <i class="fas fa-comment-dots"></i>
+                <span>Módulo 21</span>
+                <h3>Oração em Línguas</h3>
+                <p>Edificando-se no espírito e falando mistérios com Deus.</p>
+            </div>
+            <div class="module-card hidden-card">
+                <i class="fas fa-volume-mute"></i>
+                <span>Módulo 22</span>
+                <h3>A Hora Silenciosa</h3>
+                <p>Dominando a madrugada para vencer grandes batalhas.</p>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 3rem;">
+            <button id="loadMoreBtn" class="cta-button" style="background: var(--primary); cursor: pointer; border: none;">Ver Todos os Módulos</button>
+        </div>
+    </section>
+
+    <section class="registration" id="inscricao">
+        <div class="section-title">
+            <h2 style="color: white;">Inscrição para a Mentoria</h2>
+            <p>Data: 01 de Fevereiro à dia 10</p>
+        </div>
+        <form action="https://formsubmit.co/sitoe2505@gmail.com" method="post" data-aos="flip-left">
+            <input type="text" name="Nome" placeholder="Seu Nome Completo" required>
+            <input type="email" name="Email" placeholder="Seu Melhor E-mail" required>
+            <input type="tel" name="Contacto" placeholder="WhatsApp (Ex: +258...)" required>
+            <select >
+                <option value="">Como nos conheceu?</option>
+                <option value="tiktok">TikTok</option>
+                <option value="facebook">Facebook</option>
+                <option value="indicacao">Indicação</option>
+            </select>
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_subject" value="Davi NPM Ministérios - Nova Inscrição">
+            <input type="hidden" name="_next" value="http://127.0.0.1:5500/obrigado.html">
+            <button type="submit">QUERO MINHA VAGA AGORA</button>
+        </form>
+    </section>
+    <div class="admin" id="adminBtn" role="button" tabindex="0" aria-label="Área de administração">
+        <i class="fas fa-user-shield"></i>
+        <span>Admin</span>
+    </div>
+
+    <!-- Admin Modal -->
+    <div class="modal-overlay" id="adminModal" aria-hidden="true">
+        <div class="modal" role="dialog" aria-modal="true" aria-labelledby="adminTitle">
+            <h3 id="adminTitle">Área de Administração</h3>
+            <form id="adminForm" novalidate>
+                <input type="text" id="adminUser" placeholder="Nome de Usuário" required autocomplete="username">
+                <input type="password" id="adminPass" placeholder="Palavra Passe" required autocomplete="current-password">
+                <div class="error" id="adminError" aria-live="polite"></div>
+                <div class="actions">
+                    <button type="button" id="adminCancel" class="cta-button" style="background:#777; padding:8px 14px;">Cancelar</button>
+                    <button type="submit" class="cta-button" style="background:var(--primary); padding:8px 14px;">Entrar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <footer id="contacto">
+        <div class="footer-grid">
+            <div class="footer-links">
+                <h4>Daví NPM Ministérios</h4>
+                <p>Treinando generais para o Reino de Deus.</p>
+                <div class="social-icons">
+                    <a href="https://tiktok.com/@davinpmministérios" target="_blank"><i class="fab fa-tiktok"></i></a>
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="https://wa.me/258845896829" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <h4>Contactos Rápidos</h4>
+                <a href="tel:+258845896829" class="contact-item"><i class="fas fa-phone"></i> +258 845 896 829</a>
+                <a href="tel:+258879936829" class="contact-item"><i class="fas fa-phone"></i> +258 879 936 829</a>
+                <p class="contact-item"><i class="fas fa-calendar-alt"></i> Início: 01 de Fevereiro</p>
+            </div>
+        </div>
+        <hr style="margin-top: 2rem; opacity: 0.2;">
+        <p style="text-align: center; margin-top: 1.5rem; font-size: 0.8rem;">&copy; 2026 Daví NPM Ministérios. Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="js/index.js"></script>
+    <script>
+        AOS.init({ duration: 1000, once: true });
+
+        // Menu Mobile
+        const menuToggle = document.getElementById('mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Admin modal handling
+        const adminBtn = document.getElementById('adminBtn');
+        const adminModal = document.getElementById('adminModal');
+        const adminCancel = document.getElementById('adminCancel');
+        const adminForm = document.getElementById('adminForm');
+        const adminUser = document.getElementById('adminUser');
+        const adminPass = document.getElementById('adminPass');
+        const adminError = document.getElementById('adminError');
+
+        // Credenciais (ajuste conforme necessário)
+        const CRED_USER = 'daviprofeta';
+        const CRED_PASS = 'batalha2026';
+
+        function openAdminModal() {
+            adminModal.classList.add('active');
+            adminModal.setAttribute('aria-hidden', 'false');
+            adminUser.focus();
+            adminError.textContent = '';
+        }
+
+        function closeAdminModal() {
+            adminModal.classList.remove('active');
+            adminModal.setAttribute('aria-hidden', 'true');
+            adminForm.reset();
+        }
+
+        adminBtn.addEventListener('click', openAdminModal);
+        adminBtn.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') openAdminModal(); });
+        adminCancel.addEventListener('click', closeAdminModal);
+
+        // Fechar modal ao clicar fora
+        adminModal.addEventListener('click', (e) => {
+            if (e.target === adminModal) closeAdminModal();
+        });
+
+        // ESC fecha modal
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && adminModal.classList.contains('active')) closeAdminModal();
+        });
+
+        adminForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const user = adminUser.value.trim();
+            const pass = adminPass.value;
+
+            if (!user || !pass) {
+                adminError.textContent = 'Preencha usuário e palavra passe.';
+                return;
+            }
+
+            if (user === CRED_USER && pass === CRED_PASS) {
+                // sucesso: redireciona para certificado.html
+                window.location.href = 'certificado.html';
+            } else {
+                adminError.textContent = 'Usuário ou palavra passe inválidos.';
+                adminPass.value = '';
+                adminPass.focus();
+            }
+        });
+    </script>
+</body>
+</html>
